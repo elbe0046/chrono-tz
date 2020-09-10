@@ -332,7 +332,8 @@ impl TimeZone for Tz {
                 }
                 Ok(i) if i == timespans.len() - 1 => LocalResult::Single(timespans.get(i)),
                 Ok(i) if timespans.local_span(i + 1).contains(timestamp) => {
-                    LocalResult::Ambiguous(timespans.get(i), timespans.get(i + 1))
+                    LocalResult::Single(timespans.get(i + 1))
+
                 }
                 Ok(i) => LocalResult::Single(timespans.get(i)),
                 Err(_) => LocalResult::None,
